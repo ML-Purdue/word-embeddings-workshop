@@ -1,0 +1,4 @@
+chromadb==0.4.9
+ipython==8.15.0
+transformers==4.33.1
+torch==2.0.1
