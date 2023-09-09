@@ -2,3 +2,5 @@ chromadb==0.4.9
 ipython==8.15.0
 transformers==4.33.1
 torch==2.0.1
+dvc==3.19.0
+dvc-s3==2.23.0
