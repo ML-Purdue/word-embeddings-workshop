@@ -7,6 +7,7 @@ from IPython import embed
 import const
 import torch
 
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def train(optimizer, loss, data):
     training_loss = []
@@ -18,9 +19,9 @@ def train(optimizer, loss, data):
             optimizer.zero_grad()
 
             X, y = batch
-            y_pred = model(X.to('cuda'))
+            y_pred = model(X.to(device))
 
-            batch_loss = loss(y_pred, y.to('cuda'))
+            batch_loss = loss(y_pred, y.to(device))
             batch_loss.backward()
 
             optimizer.step()
@@ -36,7 +37,7 @@ if __name__ == '__main__':
                                              shuffle=True,
                                              batch_size=const.BATCH_SIZE)
 
-    model = Word2Vec(len(dataset), const.VECTOR_DIMENSIONS).to('cuda')
+    model = Word2Vec(len(dataset), const.VECTOR_DIMENSIONS).to(device)
     print(model)
 
     optimizer = torch.optim.SGD(model.parameters(), 

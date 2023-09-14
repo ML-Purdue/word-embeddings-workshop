@@ -17,7 +17,7 @@ if __name__ == '__main__':
                      vector_size=const.VECTOR_DIMENSIONS)
 
     model.wv.most_similar('man')
-    model.save(SAVE_MODEL_PATH / 'trained-gensim.kv')
+    model.save(const.SAVE_MODEL_PATH / 'trained-gensim.kv')
 
     embed()
     model.wv.most_similar(model.wv['king'] + model.wv['man'] + model.wv['woman'])
