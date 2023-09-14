@@ -5,11 +5,12 @@ import pandas as pd
 import torch
 import const
 
+
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, path):
         # load corpus
         df = pd.read_csv(path)
-        df[const.COLUMN_NAME] = df[const.COLUMN_NAME].apply(lambda x: x.lower()) # uncased
+        df[const.COLUMN_NAME] = df[const.COLUMN_NAME].apply(lambda x: x.lower())  # uncased
 
         # get word map for tensor conversion
         self.words = list(set(' '.join(list(df[const.COLUMN_NAME])).split()))
@@ -23,7 +24,7 @@ class Dataset(torch.utils.data.Dataset):
                 if idx > 0: nearby = nearby.union({words[idx-1]})
                 if idx != len(words)-1: nearby = nearby.union({words[idx+1]})
                 self.data.append((word, nearby))
-                
+
     def __len__(self):
         return len(self.data)
 
@@ -35,12 +36,12 @@ class Dataset(torch.utils.data.Dataset):
         # few-hot encode tensors using continuous bag of words
         y[self.words.index(self.data[idx][0])] = 1
         nearby = self.data[idx][1]
-        n_nearby = len(nearby)
         for word in nearby: X[self.words.index(word)] = 1
 
         return X, y
 
+
 if __name__ == '__main__':
-    dataset = Dataset(const.TOY_DATASET_PATH)
+    dataset = Dataset(const.DATASET_PATH)
     print(dataset[0])
     embed()

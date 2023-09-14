@@ -9,7 +9,7 @@ import nltk
 if __name__ == '__main__':
     nltk.download('punkt')
 
-    df = pd.read_csv(const.BIG_DATASET_PATH)
+    df = pd.read_csv(const.DATASET_PATH)
     data = df[const.COLUMN_NAME].apply(nltk.word_tokenize)
 
     model = Word2Vec(data,
@@ -17,7 +17,7 @@ if __name__ == '__main__':
                      vector_size=const.VECTOR_DIMENSIONS)
 
     model.wv.most_similar('man')
-    model.save(const.SAVE_MODEL_PATH / 'trained-gensim.kv')
+    model.save(str(const.SAVE_MODEL_PATH / 'trained-gensim.kv'))
 
     embed()
     model.wv.most_similar(model.wv['king'] + model.wv['man'] + model.wv['woman'])

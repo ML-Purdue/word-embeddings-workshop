@@ -5,6 +5,7 @@ import pandas as pd
 import torch
 import const
 
+
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, path):
         # load corpus
@@ -21,7 +22,7 @@ class Dataset(torch.utils.data.Dataset):
                 nearby = set()
                 if idx > 0: nearby = nearby.union({words[idx-1]})
                 if idx != len(words)-1: nearby = nearby.union({words[idx+1]})
-                
+
                 self.nearby_words[word] = self.nearby_words[word].union(nearby)
 
     def __len__(self):
@@ -40,7 +41,8 @@ class Dataset(torch.utils.data.Dataset):
 
         return X, y
 
+
 if __name__ == '__main__':
-    dataset = Dataset(const.TOY_DATASET_PATH)
+    dataset = Dataset(const.DATASET_PATH)
     print(dataset[0])
     embed()

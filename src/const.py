@@ -6,8 +6,7 @@ from pathlib import Path
 COLUMN_NAME = 'text'
 BASE_DIR = Path(__file__).parent.parent
 DATA_DIR = BASE_DIR / 'data'
-TOY_DATASET_PATH = DATA_DIR / 'corpus.csv'
-BIG_DATASET_PATH = DATA_DIR / 'diplomacy.csv'
+DATASET_PATH = DATA_DIR / 'corpus.csv'
 
 # architecture
 VECTOR_DIMENSIONS = 784

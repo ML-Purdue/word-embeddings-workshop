@@ -4,6 +4,7 @@ from IPython import embed
 import torch
 import const
 
+
 class Word2Vec(torch.nn.Module):
     def __init__(self, input_shape, vector_size):
         super().__init__()
@@ -21,6 +22,7 @@ class Word2Vec(torch.nn.Module):
     @property
     def embedding(self):
         return self.get_submodule('linear1').weight
+
 
 if __name__ == '__main__':
     model = Word2Vec(4, const.VECTOR_DIMENSIONS)

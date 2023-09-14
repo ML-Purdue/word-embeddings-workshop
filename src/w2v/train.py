@@ -1,4 +1,4 @@
-            #!/usr/bin/env python3
+#!/usr/bin/env python3
 
 from data.skipgram import Dataset
 from data.cbow import Dataset
@@ -8,6 +8,7 @@ import const
 import torch
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 
 def train(model, optimizer, loss, data):
     training_loss = []
@@ -27,12 +28,12 @@ def train(model, optimizer, loss, data):
             optimizer.step()
 
             training_loss[-1].append(batch_loss)
-        print(f'Epoch: {epoch+1}\tLoss: {sum(training_loss[-1]) / const.BATCH_SIZE}')
+        if (epoch+1) % 100: print(f'Epoch: {epoch+1}\tLoss: {sum(training_loss[-1]) / const.BATCH_SIZE}')
     print('-' * 10)
 
 
 if __name__ == '__main__':
-    dataset = Dataset(const.TOY_DATASET_PATH)
+    dataset = Dataset(const.DATASET_PATH)
     dataloader = torch.utils.data.DataLoader(dataset,
                                              shuffle=True,
                                              batch_size=const.BATCH_SIZE)
@@ -40,7 +41,7 @@ if __name__ == '__main__':
     model = Word2Vec(len(dataset), const.VECTOR_DIMENSIONS).to(device)
     print(model)
 
-    optimizer = torch.optim.SGD(model.parameters(), 
+    optimizer = torch.optim.SGD(model.parameters(),
                                 lr=const.LEARNING_RATE,
                                 momentum=const.MOMENTUM)
     loss = torch.nn.CrossEntropyLoss()
