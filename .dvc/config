@@ -1,3 +1,2 @@
 ['remote "origin"']
-    url = s3://dvc
-    endpointurl = https://dagshub.com/ML-Purdue/word-embeddings-workshop.s3
+    url = https://dagshub.com/ML-Purdue/word-embeddings-workshop.dvc
