@@ -13,7 +13,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 def train(model, optimizer, loss, data):
     training_loss = []
     for epoch in range(const.EPOCHS):
-        print('-' * 10)
+        if not (epoch+1) % 100: print('-' * 10)
         training_loss.append([])
 
         for batch in data:
@@ -28,7 +28,7 @@ def train(model, optimizer, loss, data):
             optimizer.step()
 
             training_loss[-1].append(batch_loss)
-        if (epoch+1) % 100: print(f'Epoch: {epoch+1}\tLoss: {sum(training_loss[-1]) / const.BATCH_SIZE}')
+        if not (epoch+1) % 100: print(f'Epoch: {epoch+1}\tLoss: {sum(training_loss[-1]) / const.BATCH_SIZE}')
     print('-' * 10)
 
 

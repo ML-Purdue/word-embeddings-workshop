@@ -5,3 +5,4 @@ ipython==8.15.0
 nltk==3.8.1
 pandas==2.1.0
 torch==2.0.1
+convokit==3.0.0
