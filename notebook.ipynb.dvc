@@ -1,4 +1,4 @@
 outs:
-    - md5: 1a1affdd35e9c31a104759d52537bfd5
-      size: 524452
+    - md5: 0f19ce1dc4ebc7a5ffcba0c1a2440ab5
+      size: 269428
       path: notebook.ipynb
