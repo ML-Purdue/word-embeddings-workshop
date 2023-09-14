@@ -1,6 +1,7 @@
-chromadb==0.4.9
-ipython==8.15.0
-transformers==4.33.1
-torch==2.0.1
-dvc==3.19.0
+boto3==1.28.17
 dvc-s3==2.23.0
+gensim==4.3.2
+ipython==8.15.0
+nltk==3.8.1
+pandas==2.1.0
+torch==2.0.1
