@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import matplotlib.pyplot as plt
 from IPython import embed
 import torch
 import const
@@ -18,6 +19,13 @@ class Word2Vec(torch.nn.Module):
         x = self.linear1(x)
         x = self.linear2(x)
         return self.softmax(x)
+
+    def visualize(self, vocabulary):
+        x, y = self.embedding.to('cpu').detach().numpy()
+
+        plt.scatter(x, y)
+        for idx, word in enumerate(vocabulary): plt.annotate(word, (x[idx], y[idx]))
+        plt.show()
 
     @property
     def embedding(self):

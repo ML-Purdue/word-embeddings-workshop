@@ -9,13 +9,13 @@ DATA_DIR = BASE_DIR / 'data'
 DATASET_PATH = DATA_DIR / 'corpus.csv'
 
 # architecture
-VECTOR_DIMENSIONS = 784
+VECTOR_DIMENSIONS = 2
 
 # training
 EPOCHS = 1000
 MOMENTUM = .9
-BATCH_SIZE = 5
-LEARNING_RATE = 1E-3
+BATCH_SIZE = 10
+LEARNING_RATE = 1E-4
 
 # model persistence
 SAVE_MODEL_PATH = BASE_DIR / 'models'

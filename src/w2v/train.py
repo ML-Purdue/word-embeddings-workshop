@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from data.skipgram import Dataset
-from data.cbow import Dataset
+# from data.cbow import Dataset  # uncomment to switch from skip-gram to cbow!
 from .arch import Word2Vec
 from IPython import embed
 import const
@@ -13,7 +13,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 def train(model, optimizer, loss, data):
     training_loss = []
     for epoch in range(const.EPOCHS):
-        if not (epoch+1) % 100: print('-' * 10)
+        if not (epoch+1) % (const.EPOCHS // 10): print('-' * 10)
         training_loss.append([])
 
         for batch in data:
@@ -28,7 +28,7 @@ def train(model, optimizer, loss, data):
             optimizer.step()
 
             training_loss[-1].append(batch_loss)
-        if not (epoch+1) % 100: print(f'Epoch: {epoch+1}\tLoss: {sum(training_loss[-1]) / const.BATCH_SIZE}')
+        if not (epoch+1) % (const.EPOCHS // 10): print(f'Epoch: {epoch+1}\tLoss: {sum(training_loss[-1]) / const.BATCH_SIZE}')
     print('-' * 10)
 
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
                                              shuffle=True,
                                              batch_size=const.BATCH_SIZE)
 
-    model = Word2Vec(len(dataset), const.VECTOR_DIMENSIONS).to(device)
+    model = Word2Vec(len(dataset.words), const.VECTOR_DIMENSIONS).to(device)
     print(model)
 
     optimizer = torch.optim.SGD(model.parameters(),

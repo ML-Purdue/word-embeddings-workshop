@@ -30,8 +30,8 @@ class Dataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         # initialize tensors
-        X = torch.zeros(len(self))
-        y = torch.zeros(len(self))
+        X = torch.zeros(len(self.words))
+        y = torch.zeros(len(self.words))
 
         # few-hot encode tensors using continuous bag of words
         y[self.words.index(self.data[idx][0])] = 1

@@ -10,6 +10,7 @@ class Dataset(torch.utils.data.Dataset):
     def __init__(self, path):
         # load corpus
         df = pd.read_csv(path)
+        df[const.COLUMN_NAME] = df[const.COLUMN_NAME].apply(lambda x: x.lower())  # uncased
 
         # get word map for tensor conversion
         self.words = list(set(' '.join(list(df[const.COLUMN_NAME])).split()))
